@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal</title>
+    <style>
+        .cont{
+            height:500px;
+            width: 500px;
+            background-color: #707F8F;
+            position: absolute;
+            left:50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5%;
+        }
+        .cont button{
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .cont button:hover{
+            cursor: pointer;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+        }
+        #popup
+        {
+            height: 400px;
+            width: 400px;
+            position: absolute;
+            left:50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid black;
+            border-radius: 10px;
+            display: none;
+            background: white;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .accept
+        {
+            padding: 10px 15px;
+            background-color: green;
+            color: white;
+            border-radius: 5px;
+        }
+        .decline
+        {
+            padding: 10px 15px;
+            background-color: red;
+            color: white;
+            border-radius: 5px;
+        }
+        #close
+        {
+            background-color: transparent;
+            position: absolute;
+            border: none;
+            top:10%;
+            right:10%;
+            color: red;
+            font-size: 25px;
+            transition: 500ms ease-in ;
+        }
+        #close:hover{
+            transform: rotate(90deg);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="cont">
+        <div><button id="btn-1">Modal 1</button></div>
+        <div><button id="btn-2">Modal 2</button></div>
+        <div><button id="btn-3">Modal 3</button></div>
+    </div>
+    <div id="popup"></div>
+</body>
+</html>
+<script>
+    document.getElementById("btn-1").addEventListener("click", ()=>{
+        add("1");
+    })
+    document.getElementById("btn-2").addEventListener("click", ()=>{
+        add("2");
+    })
+    document.getElementById("btn-3").addEventListener("click", ()=>{
+        add("3");
+    })
+   function add(model)
+   {
+    var div = document.createElement("div");
+        div.innerHTML=`
+        <h3>This is Modal ${model}</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati non corrupti nulla enim labore eveniet, iure autem inventore. Placeat quasi fuga ut doloremque vel quia laborum, impedit saepe iste eaque!</p>
+        <button class="accept">Accept</button>
+        <button class="decline">Decline</button>
+        <button id="close">X</button>
+        `
+        var popup = document.getElementById("popup");
+        popup.style.display = "block";
+        popup.innerHTML = "";
+        popup.append(div);  
+        document.getElementById("close").addEventListener("click", ()=>{
+        document.getElementById("popup").style.display = "none";
+    })
+   }
+</script>

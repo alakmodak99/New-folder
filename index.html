@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            width: 40%;
+            height: 600px;
+            display: flex;
+            margin: auto;
+            flex-wrap: wrap;
+            border: 2px solid red;
+            overflow-y: scroll;
+            position: relative;
+            scrollbar-width: thin;
+            scrollbar-color: rgb(137, 131, 131) white;
+        }
+  #items{
+    margin: auto;
+    margin-bottom: 20px;
+    width: 80%;
+  }
+  #myBtn{
+  position: fixed;
+  left: 65%;
+  top: 5%;
+  }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <button onclick="topFunction()" id="myBtn">Top</button> 
+    </div>
+</body>
+</html>
+<script>
+    const container = document.getElementById("container")
+    let count=1;
+    function loadMore(items=25){
+        let i=0;
+        while(i<items){
+            const div = document.createElement("div")
+            div.setAttribute("id", "items")
+            div.textContent= "Masai Student " + `${count++}`
+            container.append(div)
+            i++;
+        }
+      
+    }
+    loadMore()
+     container.addEventListener("scroll", ()=>{
+        if( container.offsetHeight + container.scrollTop >= container.scrollHeight){
+            loadMore()
+        }
+    })
+    function topFunction() {
+  container.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+</script>
